@@ -1,0 +1,18 @@
+# Ortam değişkenleri
+.env
+
+# Geçici dosyalar
+__pycache__/
+*.pyc
+*.pkl
+
+# IDE ayarları
+.vscode/
+.idea/
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db
+
+# Loglar
+*.log
