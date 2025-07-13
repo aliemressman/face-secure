@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  facesecure:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: facesecure_app
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - ./data/images:/app/data/images
