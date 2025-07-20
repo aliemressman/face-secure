@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     ffmpeg \
     libsm6 \
     libxext6 \
+    libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
 
 # Çalışma dizinini ayarla

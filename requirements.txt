@@ -1,5 +1,6 @@
 streamlit
 opencv-python-headless
+pymongo
 scikit-learn
 numpy
 streamlit-webrtc
@@ -7,5 +8,8 @@ bcrypt
 mediapipe
 python-dotenv
 tensorflow==2.12.0
-deepface
-pymongo
+deepface==0.0.83  # RetinaFace destekli sürüm
+keras==2.12.0
+mtcnn
+matplotlib
+Pillow

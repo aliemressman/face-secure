@@ -11,6 +11,7 @@ from app.face_recognition.embedding import get_embedding
 from app.face_recognition.detector import FaceDetector
 from app.face_recognition.matcher import find_best_match
 from app.services.user_management import get_all_user_embeddings, log_login_attempt
+from models.model import get_facenet_model
 
 # --------------------------- Sayfa Ayarları ---------------------------
 st.set_page_config(page_title="FaceSecure - Kullanıcı Girişi", layout="wide",initial_sidebar_state="collapsed")
@@ -22,11 +23,16 @@ st.sidebar.info("Yüz tanıma ile sisteme giriş yapın.")
 def load_detector():
     return FaceDetector()
 
-# @st.cache_resource(show_spinner=False) streamlit'i terminalden calistirmak icin gerekli
+@st.cache_resource(show_spinner=False)
+def load_model():
+    return get_facenet_model()
+
+@st.cache_resource(show_spinner=False)
 def load_known_users():
     return get_all_user_embeddings()
 
 DETECTOR = load_detector()
+MODEL = load_model()
 KNOWN_USERS = load_known_users()
 
 # --------------------------- Kamera Sınıfı ---------------------------
@@ -58,7 +64,7 @@ class LiveProcessor(VideoTransformerBase):
             if face_img.size == 0:
                 return image
 
-            embedding = get_embedding(None, face_img)
+            embedding = get_embedding(MODEL, face_img)
             matched_user, similarity = find_best_match(embedding, KNOWN_USERS, threshold=0.65)
 
             self.user = matched_user
@@ -97,7 +103,7 @@ def show_login_ui():
                     face_img = image[y:y + h, x:x + w]
 
                     if face_img.size > 0:
-                        embedding = get_embedding(None, face_img)
+                        embedding = get_embedding(MODEL, face_img)
                         matched_user, similarity = find_best_match(embedding, KNOWN_USERS)
 
                         if matched_user != "Unknown":
