@@ -10,6 +10,20 @@ services:
       - "8501:8501"
     env_file:
       - .env
+    environment:
+      # Kodunda MONGO_URI env değişkenini okuyorsan buna göre ayarla
+      - MONGO_URI=mongodb://mongo:27017
     volumes:
       - .:/app
       - ./data/images:/app/data/images
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6.0
+    container_name: facesecure_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongo:/data/db
