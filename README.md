@@ -23,7 +23,7 @@ data/   (varsa)
 ## 📌 .env Dosyası
 Bu dosya projeye dahil edilmiştir ve düzenlemenize gerek yoktur:
 
-ADMIN_USERNAME = admin
+ADMIN_USERNAME = admin 
 ADMIN_PASSWORD_HASH = $2b$12$4eBAikPrNgNacj1NeH9TPOXKrZMdY58zIqjW9yG6GM8HstROzFVI2
 MONGO_URI = mongodb://localhost:27017/
 
@@ -59,9 +59,10 @@ Tarayıcıya şu adresi yazın:
 
 🔐 Admin Girişi
 
-Admin paneline erişmek için:
-Kullanıcı adı: admin
-Parola: admin
+Admin paneline erişmek için: 
+
+Kullanıcı adı : admin
+Parola : admin
 
 📷 Kamera Çalışmazsa
 
@@ -72,3 +73,4 @@ seçeneğini aktif edin.
 
 🛑 Uygulamayı Durdurmak İçin
 docker compose down
+
